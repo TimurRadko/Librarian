@@ -69,7 +69,15 @@ public class Librarian {
         }
     }
 
-    public void returnBook(LibBook book, Reader reader) {
-
+    public void returnBook(Book book, Reader reader) {
+        for (Map.Entry<String, LibBook> pair : takenBooks.entrySet()) {
+            String key = pair.getKey();
+            if (key == reader.readerName) {
+               addBook(book);
+               takenBooks.remove(book);
+            } else {
+                System.out.println("You didn't take books in our library");
+            }
+        }
     }
 }
