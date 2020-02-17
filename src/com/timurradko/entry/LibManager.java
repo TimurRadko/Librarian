@@ -1,8 +1,10 @@
 package com.timurradko.entry;
 
 import com.timurradko.entity.Book;
+import com.timurradko.entity.LibBook;
 import com.timurradko.library.Librarian;
 import com.timurradko.library.Library;
+import com.timurradko.library.Reader;
 
 import java.text.ParseException;
 
@@ -10,6 +12,7 @@ public class LibManager {
     public static void main(String[] args) {
         Library library = new Library();
         Librarian librarian = new Librarian(library);
+        Reader reader = new Reader("Tom Jones");
 
         try {
             librarian.addBook(new Book("Carrie", "Stephen King", "05.04.1974"));
@@ -22,6 +25,11 @@ public class LibManager {
             System.out.println(library.viewAllBooks());
             System.out.println(library.find(new Book("1984", "George Orwell", "08.06.1949")));
             System.out.println(library.getByAuthor("George Orwell"));
+            //library.viewAllBooksAndId();
+            librarian.removeBook(new Book("1984", "George Orwell", "08.06.1949"), reader);
+            librarian.viewAllTakenBooks();
+            librarian.viewAllBooksAndId();
+
         } catch (ParseException e) {
             e.printStackTrace();
         }

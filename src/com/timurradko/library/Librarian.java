@@ -3,13 +3,13 @@ package com.timurradko.library;
 import com.timurradko.entity.Book;
 import com.timurradko.entity.LibBook;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Librarian {
     private Library library;
     private final Map<Long, LibBook> ALL_BOOKS;
     private final Map<String, List<LibBook>> BOOKS_BY_AUTHORS;
+    private Map <String, LibBook> takenBooks = new HashMap<>();
 
     public Librarian(Library library) {
         this.library = library;
@@ -35,5 +35,41 @@ public class Librarian {
             BOOKS_BY_AUTHORS.put(author, authorBooks);
         }
         authorBooks.add(book);
+    }
+
+    public void viewAllBooksAndId() {
+        for (Map.Entry<Long, LibBook> pair : ALL_BOOKS.entrySet()) {
+            Long key = pair.getKey();
+            LibBook book = pair.getValue();
+            System.out.println("ID book: " + key + ". Consist this book: " + book);
+        }
+    }
+
+    public void viewAllTakenBooks() {
+        for (Map.Entry<String, LibBook> pair : takenBooks.entrySet()) {
+            String key = pair.getKey();
+            LibBook book = pair.getValue();
+            System.out.println("This man: " + key + ", took this books: " + book);
+            if (key == null || book == null) {
+                System.out.println("All books in the library");
+            }
+        }
+    }
+
+    public void removeBook(Book book, Reader reader) {
+        Collection<LibBook> books = ALL_BOOKS.values();
+        String author = book.getAuthor();
+        Date date = book.getDate();
+        String title = book.getTitle();
+        for (LibBook libBook : books) {
+            if (author.equals(libBook.getAuthor()) || date.equals(libBook.getDate()) || title.equals(libBook.getTitle())){
+                takenBooks.put(reader.readerName, libBook);
+                books.remove(libBook);
+            }
+        }
+    }
+
+    public void returnBook(LibBook book, Reader reader) {
+
     }
 }

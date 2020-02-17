@@ -10,9 +10,12 @@ public class Library {
     final Map<Long, LibBook> ALL_BOOKS = new HashMap<>();
     final Map<String, List<LibBook>> BOOKS_BY_AUTHORS = new HashMap<>();
 
+
     public Collection<LibBook> viewAllBooks() {
         return LibUtil.getUnmodifiableVersion(ALL_BOOKS.values());
     }
+
+
 
     public List<LibBook> getByAuthor(String author) {
         List<LibBook> books = BOOKS_BY_AUTHORS.get(author);
