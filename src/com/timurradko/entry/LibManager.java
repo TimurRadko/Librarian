@@ -21,7 +21,7 @@ public class LibManager {
             librarian.addBook(new Book("1984", "George Orwell", "08.06.1949"));
             System.out.println(library.viewAllBooks());
             System.out.println(library.find(new Book("1984", "George Orwell", "08.06.1949")));
-            //System.out.println(library.getByAuthor("Ekkel"));
+            System.out.println(library.getByAuthor("George Orwell"));
         } catch (ParseException e) {
             e.printStackTrace();
         }
