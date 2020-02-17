@@ -62,9 +62,11 @@ public class Librarian {
         Date date = book.getDate();
         String title = book.getTitle();
         for (LibBook libBook : books) {
-            if (author.equals(libBook.getAuthor()) || date.equals(libBook.getDate()) || title.equals(libBook.getTitle())){
+            if (author.equals(libBook.getAuthor()) && date.equals(libBook.getDate()) && title.equals(libBook.getTitle())){
                 takenBooks.put(reader.readerName, libBook);
                 books.remove(libBook);
+            } else {
+                System.out.println("There is no such book in our library");
             }
         }
     }
