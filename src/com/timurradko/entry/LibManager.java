@@ -20,7 +20,7 @@ public class LibManager {
             librarian.addBook(new Book("Last Argument of Kings", "Joe Abercrombie", "20.03.2008"));
             librarian.addBook(new Book("1984", "George Orwell", "08.06.1949"));
             System.out.println(library.viewAllBooks());
-            System.out.println(library.find(new Book("QQWE", "Ekkel", "02.12.2001")));
+            System.out.println(library.find(new Book("1984", "George Orwell", "08.06.1949")));
             //System.out.println(library.getByAuthor("Ekkel"));
         } catch (ParseException e) {
             e.printStackTrace();

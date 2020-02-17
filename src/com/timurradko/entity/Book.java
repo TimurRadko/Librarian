@@ -64,10 +64,10 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" +
-                "title='" + title + '\'' +
-                ", author='" + author + '\'' +
-                ", date=" + date +
-                '}' + '\n';
+        return "Book {" +
+                " title: '" + title + '\'' +
+                ", author: " + author + ' ' +
+                ", date: " + date +
+                " }" + '\n';
     }
 }
