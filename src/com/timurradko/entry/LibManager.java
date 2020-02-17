@@ -25,7 +25,6 @@ public class LibManager {
             System.out.println(library.viewAllBooks());
             System.out.println(library.find(new Book("1984", "George Orwell", "08.06.1949")));
             System.out.println(library.getByAuthor("George Orwell"));
-            //library.viewAllBooksAndId();
             librarian.removeBook(new Book("1984", "George Orwell", "08.06.1949"), reader);
             librarian.viewAllTakenBooks();
             librarian.viewAllBooksAndId();
