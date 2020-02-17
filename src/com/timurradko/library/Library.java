@@ -16,6 +16,7 @@ public class Library {
 
     public List<LibBook> getByAuthor(String author) {
         List<LibBook> books = BOOKS_BY_AUTHORS.get(author);
+        System.out.println("All books of " + author);
         return LibUtil.getUnmodifiableVersion(books);
     }
 
@@ -24,6 +25,8 @@ public class Library {
         String author = book.getAuthor();
         Date date = book.getDate();
         String title = book.getTitle();
+        System.out.println();
+        System.out.print("Book found for you: ");
         for (LibBook libBook : books) {
             if (author.equals(libBook.getAuthor()) && date.equals(libBook.getDate()) && title.equals(libBook.getTitle())) {
                 return libBook;
