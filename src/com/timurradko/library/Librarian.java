@@ -9,7 +9,7 @@ public class Librarian {
     private Library library;
     private final Map<Long, LibBook> ALL_BOOKS;
     private final Map<String, List<LibBook>> BOOKS_BY_AUTHORS;
-    private Map <String, LibBook> takenBooks = new HashMap<>();
+    private Map<String, LibBook> takenBooks = new HashMap<>();
 
     public Librarian(Library library) {
         this.library = library;
@@ -48,9 +48,9 @@ public class Librarian {
     public void viewAllTakenBooks() {
         for (Map.Entry<String, LibBook> pair : takenBooks.entrySet()) {
             String key = pair.getKey();
-            LibBook book = pair.getValue();
-            System.out.println("This man: " + key + ", took this books: " + book);
-            if (key == null || book == null) {
+            LibBook libBook = pair.getValue();
+            System.out.println("This man: " + key + ", took this books: " + libBook);
+            if (key == null || libBook == null) {
                 System.out.println("All books in the library");
             }
         }
@@ -69,12 +69,13 @@ public class Librarian {
         }
     }
 
-    public void returnBook(Book book, Reader reader) {
+    public void putBookInLibrary(Reader reader) {
         for (Map.Entry<String, LibBook> pair : takenBooks.entrySet()) {
-            String key = pair.getKey();
-            if (key == reader.readerName) {
-               addBook(book);
-               takenBooks.remove(book);
+            String readerName = pair.getKey();
+            if (readerName.equals(reader.readerName)) {
+                Book libBook = pair.getValue();
+                //ALL_BOOKS.put(libBook.ID, libBook);
+                System.out.println(libBook);
             } else {
                 System.out.println("You didn't take books in our library");
             }

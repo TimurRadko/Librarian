@@ -16,4 +16,14 @@ public class LibBook extends Book {
     public LibBook(Book book) {
         super(book.getTitle(), book.getAuthor(), book.getDate());
     }
+
+    @Override
+    public String toString() {
+        return "Book {" +
+                " ID: " + ID + ' ' +
+                " title: '" + title + '\'' +
+                ", author: " + author + ' ' +
+                ", date: " + date +
+                " }" + '\n';
+    }
 }

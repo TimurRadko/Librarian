@@ -7,9 +7,9 @@ import java.util.Objects;
 
 public class Book {
     private final static SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-    private String title;
-    private String author;
-    private Date date;
+    protected String title;
+    protected String author;
+    protected Date date;
 
     public Book(String title, String author, String dateStr) throws ParseException {
         this.title = title;
