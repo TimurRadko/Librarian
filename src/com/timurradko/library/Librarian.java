@@ -9,7 +9,8 @@ public class Librarian {
     private Library library;
     private final Map<Long, LibBook> ALL_BOOKS;
     private final Map<String, List<LibBook>> BOOKS_BY_AUTHORS;
-    private Map<String, LibBook> takenBooks = new HashMap<>();
+    private Map<Long, LibBook> takenBooks = new HashMap<>();
+    private Map<Long, String> READER_DATA = new HashMap<>();
 
     public Librarian(Library library) {
         this.library = library;
@@ -46,8 +47,8 @@ public class Librarian {
     }
 
     public void viewAllTakenBooks() {
-        for (Map.Entry<String, LibBook> pair : takenBooks.entrySet()) {
-            String key = pair.getKey();
+        for (Map.Entry<Long, LibBook> pair : takenBooks.entrySet()) {
+            Long key = pair.getKey();
             LibBook libBook = pair.getValue();
             System.out.println("This man: " + key + ", took this books: " + libBook);
             if (key == null || libBook == null) {
@@ -62,25 +63,32 @@ public class Librarian {
         Date date = book.getDate();
         String title = book.getTitle();
         for (LibBook libBook : books) {
-            if (author.equals(libBook.getAuthor()) && date.equals(libBook.getDate()) && title.equals(libBook.getTitle())){
-                takenBooks.put(reader.readerName, libBook);
+            if (author.equals(libBook.getAuthor()) && date.equals(libBook.getDate()) && title.equals(libBook.getTitle())) {
+                takenBooks.put(reader.IDReader, libBook);
                 books.remove(libBook);
-            } else {
-                System.out.println("There is no such book in our library");
             }
         }
     }
 
-    public void putBookInLibrary(Reader reader) {
-        for (Map.Entry<String, LibBook> pair : takenBooks.entrySet()) {
-            String readerName = pair.getKey();
-            if (readerName.equals(reader.readerName)) {
-                Book libBook = pair.getValue();
-                //ALL_BOOKS.put(libBook.ID, libBook);
-                System.out.println(libBook);
-            } else {
-                System.out.println("You didn't take books in our library");
+        public void putBookInLibrary (Reader reader){
+            for (Map.Entry<Long, LibBook> pair : takenBooks.entrySet()) {
+                Long readerID = pair.getKey();
+                if (readerID == reader.IDReader) {
+                    LibBook libBook = pair.getValue();
+                    ALL_BOOKS.put(libBook.ID, libBook);
+                } else {
+                    System.out.println("You didn't take books in our library");
+                }
             }
+            addReaderToDataBase(reader);
+        }
+
+        public void addReaderToDataBase(Reader reader) {
+            READER_DATA.put(reader.IDReader, reader.readerName);
+        }
+
+        public void viewReaderData (Long IDReader) {
+            String nameReader = READER_DATA.get(IDReader);
+            System.out.println("The reader you were looking for: " + nameReader);
         }
     }
-}
